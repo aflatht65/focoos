@@ -1,0 +1,105 @@
+{% extends 'SCSiteBundle::base.html.twig' %}
+
+{% block content %}
+<div class="row full-width">
+	{% include 'SCSiteBundle::sidemenu.html.twig' %}
+
+	<div class="large-10 columns main">
+		<form action="{{path('upload_photo')}}" method="POST" enctype="multipart/form-data">
+		<div class="row main">
+		  <div class="large-6 large-offset-1 columns">
+                        {% if form.vars.errors|length %}
+                        <div data-alert class="alert-box error radius">
+                            {{form_errors(form)}}
+                            <a href="#" class="close">&times;</a>
+                        </div>
+                        {% endif %}
+			<div class="row main collapse">
+				<div class="large-5 columns photo">
+                                    <img src="{% if app.user.avatarUrl != null %}{{asset(app.user.avatarUrl)}}{% else %}http://www.placehold.it/160x160.png{% endif %}" class="avatar large" id="photo-img" />
+				</div>
+				<div class="large-7 columns">
+                                    <label>Φωτογραφία</label>
+                                    <input class="tiny round disabled button" name="sc_user_photo[newPhoto]" id="photo-input" type="file">
+				</div>
+			</div>
+		  </div>
+		</div>
+		</form>
+		<form action="{{path('fos_user_profile_edit')}}" method="POST">
+		<div class="row main">
+		  <div class="large-6 large-offset-1 columns">
+                        {{form_row(form.email)}}
+		  </div>
+		</div>
+		<div class="row">
+		  <div class="large-6 large-offset-1 columns">
+			{{form_row(form.name)}}
+		  </div>
+		</div>
+		<div class="row">
+		  <div class="large-6 large-offset-1 columns">
+			{{form_row(form.surname)}}
+		  </div>
+		</div>
+		<div class="row">
+		  <div class="large-6 large-offset-1 columns">
+                        {{form_row(form.department)}}
+		  </div>
+		</div>
+		<div class="row">
+		  <div class="large-6 large-offset-1 columns">
+                        {{form_row(form.lessons, {'id': 'lessons-input'})}}
+		  </div>
+		</div>
+		<div class="row">
+		  <div class="large-6 large-offset-1 columns">
+			<input type="submit" value="Υποβολή" class="button" name="submitted">
+		  </div>
+		</div>
+                <div style="display: none;">
+                    {{form_rest(form)}}
+                </div>
+		</form>
+	</div>
+</div>
+
+<script type="text/javascript" src="{{asset('js/vendor/jquery.tokeninput.js')}}"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+        var tokenInputOptions = {
+            preventDuplicates: true,
+            prePopulate: [
+                {% for lesson in app.user.lessons %}
+                {id: {{lesson.id}}, name: "{{lesson.name}}"},
+                {% endfor %}
+            ]
+        };
+	$("#lessons-input").tokenInput([
+		{% for lesson in app.user.allLessons %}
+		{id: {{lesson.id}}, name: "{{lesson.name}}"},
+		{% endfor %}
+	], tokenInputOptions);
+});
+</script>
+
+<script type="text/javascript" src="{{asset('js/vendor/jquery.form.js')}}"></script>
+<script src="{{asset('js/jquery.photoUpload.js')}}"></script>
+
+<script type="text/javascript">
+	// Photo upload
+	var onUpload = function(path) {
+		if(typeof path === 'undefined' || path == 'undefined'){
+			alert("Could not upload image! Please check to make sure your image is smaller than the 5 MB filesize limit.");
+		}
+		else {
+			$('#header-photo-img').attr('src', path+'?c='+(new Date().getTime()));
+		}
+	};
+	$('#photo-input').photoUpload({
+		photo: $('#photo-img'),
+		onUpload: onUpload
+	});
+</script>
+{% endblock content %}

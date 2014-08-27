@@ -1,0 +1,13 @@
+services:
+    sc.emailservice:
+        class: SC\ProviderBundle\Extension\EmailService
+        arguments:
+            - "@service_container"
+    sc.facebookservice:
+        class: SC\ProviderBundle\Extension\FacebookService
+        arguments:
+            - "@service_container"
+    sc.twilioservice:
+        class: SC\ProviderBundle\Extension\TwilioService
+        arguments:
+            - "@service_container"

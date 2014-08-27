@@ -1,0 +1,13 @@
+services:
+    security.acl.voter.admin_permissions:
+        class: SC\AdminBundle\Voter\AdminAclVoter
+        tags:
+            - { name: monolog.logger, channel: security }
+            - { name: security.voter, priority: 255 }
+        arguments:
+            - "@security.acl.provider"
+            - "@security.acl.object_identity_retrieval_strategy"
+            - "@security.acl.security_identity_retrieval_strategy"
+            - "@security.acl.permission.map"
+            - "@request_stack"
+            - "@?logger"

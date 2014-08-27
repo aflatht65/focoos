@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>FoCooS</title>
+
+
+        <link rel="stylesheet" href="{{asset('css/foundation.css')}}">
+        <link rel="stylesheet" href="{{asset('css/global.css')}}">
+        <link rel="stylesheet" href="{{asset('css/general_enclosed_foundicons.css')}}">
+        <link rel="stylesheet" href="{{asset('css/token-input.css')}}" type="text/css" />
+        <link rel="stylesheet" href="{{asset('css/foundation-datepicker.css')}}" type="text/css" />
+        <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}" type="text/css" />
+        <link rel="stylesheet" href="{{asset('css/token-input-facebook.css')}}" type="text/css" />
+
+        <script src="{{asset('js/vendor/custom.modernizr.js')}}"></script>
+
+        <script>
+            document.write('<script src="{{asset('js/vendor/jquery.js')}}"><\/script>')
+        </script>
+
+        </head>
+        <body>
+            <div class="sticky">
+                <nav class="top-bar">
+                    <ul class="title-area">
+                        <!-- Title Area -->
+                        <li class="name">
+                            <h1><a href="{{path('home')}}">FoCooS </a></h1>
+                        </li>
+                        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+                        <li class="toggle-topbar menu-icon"><a href="/ismgroup63/"><span>Menu</span></a></li>
+                    </ul>
+
+                    <section class="top-bar-section">
+                        <!-- Right Nav Section -->
+                        {% if is_granted('ROLE_USER') %}
+                        <ul class="right">
+                            <li class="divider hide-for-small"></li>
+                            <li><a href="message_inbox.jsp">Μηνύματα</a>
+                            <li class="has-dropdown"><a href="{{path('fos_user_profile_show')}}">{{app.user.name}} <img src="{% if app.user.avatarUrl != null %}{{asset(app.user.avatarUrl)}}{% else %}http://www.placehold.it/30x30.png{% endif %}" class="avatar small" id="header-photo-img" /></a>
+
+                                <ul class="dropdown">
+                                    <li><a href="{{path('fos_user_profile_show')}}">Το Προφίλ μου</a></li>
+                                    <li><a href="{{path('fos_user_profile_edit')}}">Επεξεργασία Προφίλ</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="{{path('fos_user_security_logout')}}">Αποσύνδεση</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        {% else %}
+                        <ul class="right">
+                            <li class="divider hide-for-small"></li>
+                            <li><a href="{{path('fos_user_security_login')}}">Σύνδεση</a></li>
+                            <li><a href="{{path('fos_user_registration_register')}}">Εγγραφή</a></li>
+                        </ul>
+                        {% endif %}
+                    </section>
+                </nav>
+            </div>
+
+            {% block content %}
+            {% endblock %}
+
+            <script src="{{asset('js/foundation.min.js')}}"></script>
+            <!--
+
+            <script src="{{asset('js/foundation/foundation.js')}}"></script>
+
+            <script src="{{asset('js/foundation/foundation.alerts.js')}}"></script>
+
+            <script src="{{asset('js/foundation/foundation.clearing.js')}}"></script>
+
+            <script src="{{asset('js/foundation/foundation.cookie.js')}}"></script>
+
+            <script src="{{asset('js/foundation/foundation.dropdown.js')}}"></script>
+
+            <script src="{{asset('js/foundation/foundation.forms.js')}}"></script>
+
+            <script src="{{asset('js/foundation/foundation.joyride.js')}}"></script>
+
+            <script src="{{asset('js/foundation/foundation.magellan.js')}}"></script>
+
+            <script src="{{asset('js/foundation/foundation.orbit.js')}}"></script>
+
+            <script src="{{asset('js/foundation/foundation.reveal.js')}}"></script>
+
+            <script src="{{asset('js/foundation/foundation.section.js')}}"></script>
+
+            <script src="{{asset('js/foundation/foundation.tooltips.js')}}"></script>
+
+            <script src="{{asset('js/foundation/foundation.topbar.js')}}"></script>
+
+            <script src="{{asset('js/foundation/foundation.interchange.js')}}"></script>
+
+            <script src="{{asset('js/foundation/foundation.placeholder.js')}}"></script>
+
+            <script src="{{asset('js/foundation/foundation.abide.js')}}"></script>
+
+            -->
+
+            <script>
+                $(document).foundation();
+                if($('.student-lessons').size() > 0) {
+                    $('.student-lessons').html($('.student-lessons').html().replace(/&nbsp;/g, " "))
+                }
+                </script>
+            </body>
+        </html>

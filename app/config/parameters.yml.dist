@@ -1,0 +1,18 @@
+parameters:
+    database_driver: pdo_mysql
+    database_host: localhost
+    database_port: null
+    database_name: focoos
+    database_user: root
+    database_password: null
+    mailer_transport: smtp
+    mailer_host: localhost
+    mailer_user: null
+    mailer_password: null
+    locale: el
+    secret: 3a81c8d57cb12f63fb93a9bd17e5684f4
+    database_path: null
+    fb_appId: '588455577932396'
+    fb_appSecret: fb077e2e0dddc1d5528c2ba73796647e
+    fb_appNamespace: socialcouriers
+    google_maps_api_key: AIzaSyCmsigwoyCmdMXR1OrpsOabhIgawOY5_Fs

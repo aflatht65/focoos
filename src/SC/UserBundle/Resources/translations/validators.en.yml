@@ -1,0 +1,44 @@
+mandatory: Mandatory
+'This value should be the user current password':
+    '': 'This value should be the user current password.'
+fos_user:
+    username:
+        already_used: 'The username is already used'
+        blank: 'Please enter a username'
+        short: 'The username is too short'
+        long: 'The username is too long'
+    name:
+        short: 'Το όνομα και το επώνυμο πρέπει να είναι από 3 εως 12 χαρακτήρες'
+        number: 'Το όνομα και το επώνυμο δεν πρέπει να περιέχουν αριθμούς'
+    email:
+        already_used: 'Aυτό το email χρησιμοποιείται ήδη'
+        blank: 'Παρακαλώ δώστε ένα email'
+        short: 'Το email είναι πολύ μικρό'
+        long: 'Το email είναι πολύ μεγάλο'
+        invalid: 'Το email δεν είναι έγκυρο'
+    password:
+        blank: 'Παρακαλώ δώστε εναν κωδικό'
+        short: 'Ο κωδικός είναι πολύ μικρός'
+        mismatch: 'The passwords do not match'
+    new_password:
+        blank: 'Παρακαλώ δώστε έναν νέο κωδικό'
+        short: 'Ο νέος κωδικός είναι πολύ μικρός'
+        mismatch: 'The passwords do not match'
+    current_password:
+        invalid: 'Ο κωδικός δεν είναι έγκυρος'
+    group:
+        blank: 'Please enter a name'
+        short: 'The name is too short'
+        long: 'The name is too long'
+    profession:
+        toolong: 'The profession is too long.|The profession is too long.'
+    status:
+        toolong: 'The status is too long.|The status is too long.'
+    hobbies:
+        toolong: 'The hobbies are too long.|The hobbies are too long.'
+    specialty:
+        toolong: 'The speciality is too long.|The speciality is too long.'
+    diytv:
+        toolong: 'The diytv link is too long.|The diytv link is too long.'
+    cook:
+        errors: 'Για να μοιράζεσαι τις σπιτικές σου δημιουργίες πρέπει να έχεις προσωπική φωτογραφία, επιβεβαιωμένο τηλέφωνο και email καθώς και συμπληρωμένα όλα τα πεδία που εμφανίζονται με γκρι χρώμα παρακάτω.'

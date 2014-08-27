@@ -1,0 +1,22 @@
+<div class="large-2 columns aside">
+	<h4>Γενικά</h4>
+	<ul class="">
+            <li><a href="index.jsp">Τοίχος</a></li>
+            <li><a href="message_inbox.jsp">Μηνύματα</a></li>
+            <li><a href="calendar.jsp">Ημερολόγιο</a></li>
+	</ul>
+	{% if is_granted('ROLE_USER') and app.user.lessons|length > 0 %}
+	<h4>Μαθήματα</h4>
+	<ul class="student-lessons">
+            {% for lesson in app.user.lessons %}
+            <li>
+                {% if app.request.get("lesson") == null or app.request.get("lesson") != lesson.id %}
+                    <a href="{{path('home', {'lesson': lesson.id}) }}">{{lesson.name}}</a>
+                {% else %}
+                    {{lesson.name}}
+                {% endif %}
+            </li>
+            {% endfor %}
+	</ul>
+	{% endif %}
+</div>

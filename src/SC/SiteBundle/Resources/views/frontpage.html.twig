@@ -1,0 +1,21 @@
+{% extends 'SCSiteBundle::base.html.twig' %}
+
+{% block content %}
+<div class="row full-width">
+    {% include 'SCSiteBundle::sidemenu.html.twig' %}
+
+    {% if app.request.get("lesson") == null %}
+    <h3>Τοίχος</h3>
+    {% endif %}
+
+    {% if is_granted('ROLE_USER') and app.user.lessons|length > 0 %}
+    <p class="text-align-center ten-margin-top no-margin-bottom"><a href="{{path('new_post', {'lesson': app.request.get('lesson')})}}" class="button no-margin-bottom">Νέα Ανάρτηση</a></p>
+    {% endif %}
+
+    <div class="large-10 columns main posts">
+        {% for post in posts %}
+            {% include 'SCSiteBundle::post.html.twig' with {post: post} %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

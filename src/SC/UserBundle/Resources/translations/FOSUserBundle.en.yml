@@ -1,0 +1,77 @@
+'Bad credentials': 'Invalid username or password.'
+registration:
+    first_name:
+        label: 'First name'
+        error: 'At least 3 characters'
+    last_name:
+        label: 'Last name'
+        error: 'At least 3 characters'
+    email:
+        label: 'Email Address'
+        error: 'This email is invalid or already in use'
+        error_nouse: 'Enter a valid email'
+    password:
+        label: Password
+        error: 'At least 5 characters'
+    label: 'SIGN UP'
+    use_email: 'Sign up with your'
+    use_email_link: 'email address'
+    facebook: 'Connect with Facebook'
+    footer: 'Είσαι ήδη cookistas;'
+    footer_link: Σύνδεση
+    footer_step2: 'By signing up, you agree to the'
+    footer_step2_terms: 'Terms of Use'
+    progress: 'It won''t take a minute'
+    already_cookista: 'Already a Cookista?'
+    sign_in: 'Sign in'
+    where_are_you: 'Where are you when you''re hungry?'
+    previous_step: 'Previous step'
+    is_this_correct: 'Verify location<br>Something look off? <a href="#" id="%id%">Edit pin location</a>'
+    edit_pin: 'Pin location<br>Move the pin to your location'
+form:
+    current_password: 'Current password'
+    new_password: 'New password'
+    new_password_confirmation: 'Confirm new password'
+resetting:
+    heading: 'Forgot your password?'
+    password_reset: 'Password Reset'
+    password_already_requested: 'The password for this user has already been requested within the last 24 hours.'
+    check_email: 'An email has been sent to %email%. It contains a link you must click to reset your password.'
+    request:
+        title: 'Forgot my password'
+        msg: 'Forgot your'
+        invalid_username: 'No user exists with that email.'
+        click_here: 'password?'
+        username: 'Email address'
+        submit: 'RESET PASSWORD'
+    reset:
+        msg: 'New Password'
+        submit: 'CHANGE PASSWORD'
+        new:
+            first: 'New password'
+            second: 'Verify password'
+    email:
+        subject: 'Reset Password'
+        message: "Hello %username%!\n\nTo change your password follow this link: %confirmationUrl%\n\nThanks,\n\nTeam Cookisto.\n"
+security:
+    login:
+        label: 'LOG IN'
+        header: 'Real food, real people'
+        facebook: 'Log in with Facebook'
+        footer_link: 'Δεν έχω λογαριασμό'
+        or: or
+change_password:
+    msg: 'Change password'
+    current: 'Current password'
+    first: 'New password'
+    second: 'Confirm new password'
+    submit: Save
+    flash:
+        success: 'Ο κωδικός σας έχει αλλάξει με επιτυχία.'
+        failure: 'Λάθος κωδικός. Παρακαλώ προσπαθήστε ξανά.'
+        facebook: 'Καλωσήρθες! Ο προσωρινός σου κωδικός είναι το email σου. Παρακαλώ άλλαξε τον από την Αλλαγή Κωδικού.'
+mobile:
+    no_account_prompt: 'Don''t have an'
+    no_account_link: 'account?'
+    desktop_link: 'Show me the desktop site'
+    next: Next
