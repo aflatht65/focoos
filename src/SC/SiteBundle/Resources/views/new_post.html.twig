@@ -43,7 +43,7 @@
 					<p class="title" data-section-title><a href="#panel2">Deadline</a></p>
 					<div class="content" data-section-content>
 					  <form action="{{path('submit_new_deadline')}}" method="POST" enctype="multipart/form-data" onclick="if($(this).find('input').val() == '') return false; else return true;">
-						{{form_row(deadlineForm.message)}}
+						{{form_row(deadlineForm.message, {'attr': {'placeholder': 'Γράψε το μήνυμα σου... (πχ. Φροντιστήριο 5-7)'}})}}
                                                 {{form_row(deadlineForm.deadlineDate, {'id': 'deadlineDate-input'})}}
 						{{form_row(deadlineForm.lesson)}}
 						<input type="submit" class="button" name="submitted" value="Ανάρτηση" />

@@ -3,7 +3,7 @@
 	<ul class="">
             <li><a href="{{path('home')}}">Τοίχος</a></li>
             <li><a href="message_inbox.jsp">Μηνύματα</a></li>
-            <li><a href="calendar.jsp">Ημερολόγιο</a></li>
+            <li><a href="{{path('calendar')}}">Ημερολόγιο</a></li>
 	</ul>
 	{% if is_granted('ROLE_USER') and app.user.lessons|length > 0 %}
 	<h4>Μαθήματα</h4>

@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table()
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="SC\SiteBundle\Entity\Repositories\PostsRepository")
  */
 class Deadline extends Post
 {

@@ -24,6 +24,14 @@ class PostsRepository extends EntityRepository
             $qb->andWhere('l.id IN(:lessons)');
             $qb->setParameter('lessons', $filters['lessons']);
         }
+        if(isset($filters['deadlineAfter']) && $filters['deadlineAfter'] instanceof \DateTime) {
+            $qb->andWhere('p.deadlineDate >= :deadlineAfter');
+            $qb->setParameter('deadlineAfter', $filters['deadlineAfter']);
+        }
+        if(isset($filters['deadlineBefore']) && $filters['deadlineBefore'] instanceof \DateTime) {
+            $qb->andWhere('p.deadlineDate <= :deadlineBefore');
+            $qb->setParameter('deadlineBefore', $filters['deadlineBefore']);
+        }
         $qb->orderBy('p.createdAt', 'DESC');
     }
 }

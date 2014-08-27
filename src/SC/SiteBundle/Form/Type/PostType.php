@@ -12,8 +12,8 @@ class PostType extends AbstractType
     {
         $user = $options['user'];
         $builder
-            ->add('message', null, array('label' => 'Μήνυμα'))
-            ->add('lesson', null, array('label' => 'Μάθημα', 'required' => true, 'query_builder' => function(EntityRepository $er) use ($user) {
+            ->add('message', null, array('label' => false, 'attr' => array('placeholder' => 'Γράψε το μήνυμα σου...')))
+            ->add('lesson', null, array('label' => false, 'required' => true, 'query_builder' => function(EntityRepository $er) use ($user) {
               $lessonIds = array();
               foreach($user->getLessons() as $curLesson) {
                   $lessonIds[] = $curLesson->getId();
