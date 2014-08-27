@@ -1,0 +1,35 @@
+{% extends 'SCSiteBundle::base.html.twig' %}
+
+{% block content %}
+<div class="row full-width">
+    {% include 'SCSiteBundle::sidemenu.html.twig' %}
+
+    <h3>Συζητήσεις</h3>
+
+    <div class="large-10 columns main posts conversations">
+        {% if conversations|length > 0 %}
+        {% for conversation in conversations %}
+        <div class="row collapse post link" onclick="window.location = '{{path('thread', {'user': conversation.sender.id})}}';">
+            <div class="large-1 columns photo">
+                <img class="avatar medium" src="{{conversation.sender.avatarUrl != null ? asset(conversation.sender.avatarUrl) : "http://placehold.it/60x60.png"}}" />
+            </div>
+            <div class="large-11 columns">
+                <div class="row header">
+                    <div class="large-12 columns">
+                        <a href="{{path('other_profile', {'user': conversation.sender.id})}}">{{conversation.sender.name}} {{conversation.sender.surname}}</a> <small class="time">{{conversation.createdAt|date('d-m-Y H:i')}}</small>
+                    </div>
+                </div>
+                <div class="row content">
+                    <div class="large-12 columns">
+                        {{conversation.message}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h5>Δεν έχεις ακόμα συνομιλίες</h5>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

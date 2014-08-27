@@ -8,6 +8,11 @@ SCSiteBundle:
     type:     annotation
     prefix:   /
 
+SCUserBundle:
+    resource: "@SCUserBundle/Controller"
+    type:     annotation
+    prefix:   /
+
 forky_provider:
     resource: "@SCProviderBundle/Controller/"
     type:     annotation

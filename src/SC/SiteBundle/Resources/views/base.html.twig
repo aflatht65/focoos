@@ -40,7 +40,7 @@
                         {% if is_granted('ROLE_USER') %}
                         <ul class="right">
                             <li class="divider hide-for-small"></li>
-                            <li><a href="message_inbox.jsp">Μηνύματα</a>
+                            <li><a href="{{path('inbox')}}">Μηνύματα</a>
                             <li class="has-dropdown"><a href="{{path('fos_user_profile_show')}}">{{app.user.name}} <img src="{% if app.user.avatarUrl != null %}{{asset(app.user.avatarUrl)}}{% else %}http://www.placehold.it/30x30.png{% endif %}" class="avatar small" id="header-photo-img" /></a>
 
                                 <ul class="dropdown">

@@ -59,7 +59,7 @@ class FrontpageController extends Controller {
     }
 
     /**
-     * @Route("/profile/{user}", name="other_profile")
+     * @Route("/other_profile/{user}", name="other_profile")
      * @Secure(roles="ROLE_USER")
      */
     public function showOtherAction(User $user) {

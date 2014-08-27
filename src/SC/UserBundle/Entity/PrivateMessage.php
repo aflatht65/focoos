@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table()
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="SC\UserBundle\Entity\Repositories\PrivateMessageRepository")
  */
 class PrivateMessage
 {
@@ -21,13 +21,13 @@ class PrivateMessage
      */
     protected $id;
     /**
-     * @ORM\ManyToOne(targetEntity="SC\UserBundle\Entity\User", cascade={"persist"})
-     * @ORM\JoinColumn(name="student_id", referencedColumnName="id", onDelete="RESTRICT")
+     * @ORM\ManyToOne(targetEntity="SC\UserBundle\Entity\User", inversedBy="sentMessages", cascade={"persist"})
+     * @ORM\JoinColumn(name="sender_id", referencedColumnName="id", onDelete="RESTRICT")
      */
     protected $sender;
     /**
-     * @ORM\ManyToOne(targetEntity="SC\UserBundle\Entity\User", cascade={"persist"})
-     * @ORM\JoinColumn(name="student_id", referencedColumnName="id", onDelete="RESTRICT")
+     * @ORM\ManyToOne(targetEntity="SC\UserBundle\Entity\User", inversedBy="receivedMessages", cascade={"persist"})
+     * @ORM\JoinColumn(name="receiver_id", referencedColumnName="id", onDelete="RESTRICT")
      */
     protected $receiver;
     /**

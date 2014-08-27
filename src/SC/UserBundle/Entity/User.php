@@ -63,11 +63,21 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="SC\SiteBundle\Entity\Post", mappedBy="student")
      */
     protected $posts;
+    /**
+     * @ORM\OneToMany(targetEntity="SC\UserBundle\Entity\PrivateMessage", mappedBy="sender")
+     */
+    protected $sentMessages;
+    /**
+     * @ORM\OneToMany(targetEntity="SC\UserBundle\Entity\PrivateMessage", mappedBy="receiver")
+     */
+    protected $receivedMessages;
 
     public function __construct() {
         parent::__construct();
         $this->lessons = new ArrayCollection();
         $this->posts = new ArrayCollection();
+        $this->sentMessages = new ArrayCollection();
+        $this->receivedMessages = new ArrayCollection();
     }
 
     public function getId() {
@@ -142,6 +152,22 @@ class User extends BaseUser
 
     public function setPosts($posts) {
         $this->posts = $posts;
+    }
+
+    public function getSentMessages() {
+        return $this->sentMessages;
+    }
+
+    public function setSentMessages($sentMessages) {
+        $this->sentMessages = $sentMessages;
+    }
+
+    public function getReceivedMessages() {
+        return $this->receivedMessages;
+    }
+
+    public function setReceivedMessages($receivedMessages) {
+        $this->receivedMessages = $receivedMessages;
     }
 
     public function getExpiresAt() {

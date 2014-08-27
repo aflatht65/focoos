@@ -28,7 +28,7 @@
 					{% endif %}
 					{% if app.user.id != user.id %}
 					<li>
-						<a class="button small ten-margin-top no-margin-bottom" href="message_thread.jsp?sender={{user.id}}">Στείλε μήνυμα</a>
+						<a class="button small ten-margin-top no-margin-bottom" href="{{path('thread', {'user': user.id})}}">Στείλε μήνυμα</a>
 					</li>
 					{% endif %}
 				</ul>
