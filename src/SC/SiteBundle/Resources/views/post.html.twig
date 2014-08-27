@@ -1,12 +1,12 @@
 <div class="row collapse post">
     <div class="large-1 columns photo">
-        <img class="avatar medium" src="{{post.student.avatarUrl != null ? post.student.avatarUrl : "http://placehold.it/60x60.png"}}" />
+        <img class="avatar medium" src="{{post.student.avatarUrl != null ? asset(post.student.avatarUrl) : "http://placehold.it/60x60.png"}}" />
     </div>
     <div class="large-11 columns">
         <div class="row header">
             <div class="large-12 columns">
-                <a href="{{path('other_profile', {'id': post.student.id}) }}">{{post.student.name}} {{post.student.surname}}</a> <small>{{post.lesson.name}}</small>
-                <small class="time">{{post.creationDate|date('d-m-Y H:i')}}</small>
+                <a href="{{path('other_profile', {'user': post.student.id}) }}">{{post.student.name}} {{post.student.surname}}</a> <small>{{post.lesson.name}}</small>
+                <small class="time">{{post.createdAt|date('d-m-Y H:i')}}</small>
             </div>
         </div>
         <div class="row content">
@@ -17,19 +17,19 @@
         {% if (post.type == 'exercise') %}
         <div class="row content">
             <div class="large-12 columns">
-                <a href="{{post.exerciseUrl}}"><i class="foundicon-down-arrow"></i> {{post.exerciseUrl.split("/")[1]}}</a>
+                <a href="{{asset(post.imagePath)}}"><i class="foundicon-down-arrow"></i> {{post.basename}}</a>
             </div>
         </div>
         {% elseif(post.type == 'deadline') %}
         <div class="row content">
             <div class="large-12 columns">
-                <i class="foundicon-calendar"></i> {{post.deadlineDate|date('d-m-Y H:i')}} %>
+                <i class="foundicon-calendar"></i> {{post.deadlineDate|date('d-m-Y')}}
             </div>
         </div>
         {% elseif(post.type == 'note') %}
         <div class="row content">
             <div class="large-12 columns">
-                <a href="{{post.noteUrl}}"><i class="foundicon-down-arrow"></i> {{post.noteUrl.split("/")[1]}}</a>
+                <a href="{{asset(post.imagePath)}}"><i class="foundicon-down-arrow"></i> {{post.basename}}</a>
             </div>
         </div>
         {% endif %}
@@ -39,11 +39,11 @@
                     {% for comment in post.comments %}
                     <div class="row collapse comment">
                         <div class="large-12 columns">
-                            <img class="avatar small-medium" src="{{comment.student.avatarUrl != null ? comment.student.avatarUrl : "http://placehold.it/40x40.png"}}" />
+                            <img class="avatar small-medium" src="{{comment.student.avatarUrl != null ? asset(comment.student.avatarUrl) : "http://placehold.it/40x40.png"}}" />
                                  <span class="comment-content">
-                                <a href="{{path('other_profile', {comment.student.id}) }}">{{comment.student.name}} {{comment.student.surname}}</a>
+                                <a href="{{path('other_profile', {'user': comment.student.id}) }}">{{comment.student.name}} {{comment.student.surname}}</a>
                                 {{comment.message}}<BR />
-                                <small>{{comment.creationDate|date('d-m-Y H:i')}}</small>
+                                <small>{{comment.createdAt|date('d-m-Y H:i')}}</small>
                             </span>
                         </div>
                     </div>

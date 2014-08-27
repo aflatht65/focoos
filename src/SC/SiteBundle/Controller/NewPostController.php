@@ -22,10 +22,21 @@ class NewPostController extends Controller {
      */
     public function newPostAction() {
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $postForm = $this->createForm(new PostType(), new Post(), array('user' => $user));
-        $exerciseForm = $this->createForm(new ExerciseType(), new Exercise(), array('user' => $user));
-        $deadlineForm = $this->createForm(new DeadlineType(), new Deadline(), array('user' => $user));
-        $noteForm = $this->createForm(new NoteType(), new Note(), array('user' => $user));
+        $post = new Post();
+        $exercise = new Exercise();
+        $deadline = new Deadline();
+        $note = new Note();
+        if($this->getRequest()->get('lesson') != null) {
+            $lesson = $this->container->get('doctrine')->getRepository('SC\UserBundle\Entity\Lesson')->find($this->getRequest()->get('lesson'));
+            $post->setLesson($lesson);
+            $exercise->setLesson($lesson);
+            $deadline->setLesson($lesson);
+            $note->setLesson($lesson);
+        }
+        $postForm = $this->createForm(new PostType(), $post, array('user' => $user));
+        $exerciseForm = $this->createForm(new ExerciseType(), $exercise, array('user' => $user));
+        $deadlineForm = $this->createForm(new DeadlineType(), $deadline, array('user' => $user));
+        $noteForm = $this->createForm(new NoteType(), $note, array('user' => $user));
         return $this->render('SCSiteBundle::new_post.html.twig', array(
             'postForm' => $postForm->createView(),
             'exerciseForm' => $exerciseForm->createView(),
@@ -39,7 +50,7 @@ class NewPostController extends Controller {
      * @Secure(roles="ROLE_USER")
      */
     public function newSubmitPostAction() {
-
+        return $this->submitForm(new PostType(), new Post(), function() {});
     }
 
     /**
@@ -47,7 +58,13 @@ class NewPostController extends Controller {
      * @Secure(roles="ROLE_USER")
      */
     public function newSubmitExerciseAction() {
-
+        return $this->submitForm(new ExerciseType(), new Exercise(), function($entity) {
+            // Photo
+            if($entity->getExercise() != null) {
+                $this->container->get('stof_doctrine_extensions.uploadable.manager')->markEntityToUpload($entity, $entity->getExercise());
+            }
+            // End photo
+        });
     }
 
     /**
@@ -55,7 +72,7 @@ class NewPostController extends Controller {
      * @Secure(roles="ROLE_USER")
      */
     public function newSubmitDeadlineAction() {
-
+        return $this->submitForm(new DeadlineType(), new Deadline(), function() {});
     }
 
     /**
@@ -63,29 +80,28 @@ class NewPostController extends Controller {
      * @Secure(roles="ROLE_USER")
      */
     public function newSubmitNoteAction() {
-
+        return $this->submitForm(new NoteType(), new Note(), function($entity) {
+            // Photo
+            if($entity->getNote() != null) {
+                $this->container->get('stof_doctrine_extensions.uploadable.manager')->markEntityToUpload($entity, $entity->getNote());
+            }
+            // End photo
+        });
     }
 
-    protected function submitForm($formType, $entity) {
+    protected function submitForm($formType, $entity, $callback) {
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $form = $this->createForm($formType, $entity);
+        $entity->setStudent($user);
+        $form = $this->createForm($formType, $entity, array('user' => $user));
         if ('POST' == $this->getRequest()->getMethod()) {
             $form->bind($this->getRequest());
             if($form->isValid()) {
                 $this->container->get('doctrine')->getManager()->persist($entity);
-                // Photo
-                if($entity->getNewPhoto() != null) {
-                    $entity->getPhoto()->setPhoto($entity->getNewPhoto());
-                    $this->container->get('doctrine')->getManager()->persist($entity->getPhoto());
-                    $this->container->get('stof_doctrine_extensions.uploadable.manager')->markEntityToUpload($entity->getPhoto(), $entity->getPhoto()->getPhoto());
-                }
-                // End photo
+                $callback($entity);
                 $this->container->get('doctrine')->getManager()->flush($entity);
                 return new RedirectResponse($this->container->get('router')->generate('home'));
             }
         }
-        return $this->render('SCSiteBundle::new_post.html.twig', array(
-            'form' => $form->createView(),
-        ));
+        return new RedirectResponse($this->container->get('router')->generate('new_post'));
     }
 }

@@ -11,8 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity()
  * @Gedmo\Uploadable(
  *  pathMethod="getRootPath",
- *  filenameGenerator="SHA1",
- *  allowedTypes="image/jpeg,image/pjpeg,image/png,image/x-png"
+ *  filenameGenerator="ALPHANUMERIC"
  * )
  */
 class Note extends Post
@@ -23,9 +22,7 @@ class Note extends Post
      */
     private $path;
     /**
-     * @Assert\File(
-     *     mimeTypes={"image/jpeg", "image/pjpeg", "image/png", "image/x-png"}
-     * )
+     * @Assert\File()
      */
     private $note;
 
@@ -67,6 +64,10 @@ class Note extends Post
         $this->path = $path;
     }
 
+    public function getBasename() {
+        return basename($this->getPath());
+    }
+
     public function getPathObject() {
         return new Image($this->getImagePath());
     }
@@ -74,9 +75,8 @@ class Note extends Post
     public function getImagePath() {
         if($this->getPath() != null) {
             return $this->getWebPath().'/'.basename($this->getPath());
-        } else {
-            return 'images/p36.png';
         }
+        return null;
     }
 
     public function getNote() {
@@ -109,5 +109,9 @@ class Note extends Post
 
     public function setSize($size) {
         $this->size = $size;
+    }
+
+    public function getType() {
+        return 'note';
     }
 }

@@ -24,5 +24,6 @@ class PostsRepository extends EntityRepository
             $qb->andWhere('l.id IN(:lessons)');
             $qb->setParameter('lessons', $filters['lessons']);
         }
+        $qb->orderBy('p.createdAt', 'DESC');
     }
 }

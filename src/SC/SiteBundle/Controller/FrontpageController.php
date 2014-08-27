@@ -19,8 +19,12 @@ class FrontpageController extends Controller {
     public function frontpageAction() {
         $user = $this->container->get('security.context')->getToken()->getUser();
         $lessonIds = array();
-        foreach($user->getLessons() as $curLesson) {
-            $lessonIds[] = $curLesson->getId();
+        if($this->getRequest()->get('lesson') == null) {
+            foreach($user->getLessons() as $curLesson) {
+                $lessonIds[] = $curLesson->getId();
+            }
+        } else {
+            $lessonIds[] = $this->getRequest()->get('lesson');
         }
         $posts = $this->container->get('doctrine')->getRepository('SC\SiteBundle\Entity\Post')->findPosts(array(
             'lessons' => $lessonIds,
