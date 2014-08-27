@@ -48,10 +48,10 @@
                         </div>
                     </div>
                     {% endfor %}
-                    <form action="servlet/NewCommentServlet?post={{post.id}}&return={{app.request.requestUri|url_encode()}}" method="POST">
+                    <form action="{{path('submit_new_comment', {'post': post.id})}}" method="POST">
                         <div class="row collapse">
                             <div class="small-11 columns">
-                                <input type="text" name="message" class="no-margin-bottom" placeholder="Γράψε ένα σχόλιο..." />
+                                <input type="text" name="comment[message]" class="no-margin-bottom" placeholder="Γράψε ένα σχόλιο..." />
                             </div>
                             <div class="small-1 columns">
                                 <input type="submit" name="submitted" class="no-margin-bottom button postfix" value="&#x2192;" />
