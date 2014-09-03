@@ -1,0 +1,12 @@
+{% extends 'SCSiteBundle::base.html.twig' %}
+
+{% block content %}
+<!-- Signup -->
+    <div class="row main">
+        <div class="large-6 large-offset-3 columns">
+            <h3>Επιτυχής εγγραφή</h3>
+            <p>{{ 'registration.confirmed'|trans({'%username%': user.name}, 'FOSUserBundle') }}</p>
+            <p style="margin-bottom: 0;"><a href="{{path('fos_user_profile_edit')}}">Ορισμός τμήματος και μαθημάτων</a></p>
+        </div>
+    </div>
+{% endblock content %}

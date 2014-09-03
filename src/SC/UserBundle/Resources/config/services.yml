@@ -1,0 +1,25 @@
+services:
+    sc.registration.form.type:
+       class: SC\UserBundle\Form\Type\RegistrationFormType
+       arguments: [%fos_user.model.user.class%]
+       tags:
+           - { name: form.type, alias: sc_user_registration }
+    sc.form.handler.registration:
+       class: SC\UserBundle\Form\Handler\RegistrationFormHandler
+       arguments: ["@fos_user.registration.form", "@request", "@fos_user.user_manager", "@fos_user.mailer", "@fos_user.util.token_generator"]
+       calls:
+           - [setTokenService, ["@sc.tokenservice"]]
+           - [setEntityManager, ["@doctrine.orm.entity_manager"]]
+           - [setUploadableManager, ["@stof_doctrine_extensions.uploadable.manager"] ]
+       scope: request
+       public: false
+    sc.profile.form.type:
+       class: SC\UserBundle\Form\Type\ProfileFormType
+       arguments: [%fos_user.model.user.class%]
+       tags:
+           - { name: form.type, alias: sc_user_profile }
+    sc.form.handler.profile:
+       class: SC\UserBundle\Form\Handler\ProfileFormHandler
+       arguments: ["@fos_user.profile.form", "@request", "@fos_user.user_manager"]
+       scope: request
+       public: false

@@ -1,0 +1,153 @@
+.row.full-width { width: 80%; max-width: 100%; }
+
+h3 {
+	text-align: center;
+}
+
+h3 .btn {
+	text-decoration: underline;
+}
+
+.aside {
+	font-size: 14px;
+	padding-left: 20px;
+	border-right: 1px solid #CCC;
+}
+.aside h4 {
+	font-size: 16px;
+	border-bottom: 1px dashed #DDD;
+}
+.aside ul {
+	list-style-type: none;
+}
+.aside li {
+	border-bottom: 1px dashed #DDD;
+}
+
+.aside .profile {
+	font-size: 10px;
+	padding-bottom: 10px;
+}
+
+.main {
+	padding-top: 10px;
+}
+
+.post .photo {
+	text-align: right;
+}
+
+.post .header {
+	padding-bottom: 10px;
+}
+.post .content {
+	padding-bottom: 10px;
+}
+
+.post .time {
+	color: #CCC;
+}
+
+.post .comments .comment {
+	font-size: 12px;
+	border-bottom: 1px solid #FFF;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+.post .comments  .comment-content {
+	display: inline-block;
+	padding-top: 2px;
+	padding-left: 5px;
+	vertical-align: top;
+}
+.post .comments .panel {
+	padding: 10px;
+}
+
+.conversations .row.post {
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	border-bottom: 1px solid #CCC;
+}
+.conversations .row.post:last-of-type {
+	border-bottom: none;
+}
+
+.calendar-next {
+	float: right;
+}
+
+.profile-row {
+	padding-bottom: 10px;
+}
+
+.profile-row ul {
+	list-style-type: none;
+	padding-left: 10px;
+}
+
+.profile-lessons {
+	font-size: 12px;
+}
+
+.avatar.large {
+	width: 160px;
+	height: 160px;
+}
+
+.avatar.medium {
+	width: 60px;
+	height: 60px;
+}
+
+.avatar.small-medium {
+	width: 40px;
+	height: 40px;
+}
+
+.avatar.small {
+	width: 30px;
+	height: 30px;
+}
+
+.loading:after {
+	background:#fff url(http://developme.files.wordpress.com/2010/02/icon_loading_75x75.gif?w=625) center no-repeat;
+	background-color:rgba(255, 255, 255, .75);
+	border-radius:12px;
+	content:" ";
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	z-index:120;
+}
+
+body .five-margin-top {
+	margin-top: 5px;
+}
+
+body .ten-margin-top {
+	margin-top: 10px;
+}
+
+body .ten-margin-bottom {
+	margin-bottom: 10px;
+}
+
+body .no-margin-bottom {
+	margin-bottom: 0;
+}
+
+body .text-align-center {
+	display: block;
+	text-align: center;
+}
+
+.conversations .post.link {
+	cursor: pointer;
+}
+
+.conversations .post.link:hover {
+	background-color: #EEE;
+}

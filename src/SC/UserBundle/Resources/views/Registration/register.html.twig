@@ -1,0 +1,41 @@
+{% extends 'SCSiteBundle::base.html.twig' %}
+
+{% block content %}
+<form action="{{path('fos_user_registration_register')}}" method="POST">
+    <div class="row main">
+        <div class="large-6 large-offset-3 columns">
+            {% if form.vars.errors|length %}
+            <div data-alert class="alert-box error radius">
+                {{form_errors(form)}}
+                <a href="#" class="close">&times;</a>
+            </div>
+            {% endif %}
+            {{form_row(form.name)}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 large-offset-3 columns">
+            {{form_row(form.surname)}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 large-offset-3 columns">
+            {{form_row(form.email)}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 large-offset-3 columns">
+            {{form_row(form.plainPassword)}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 large-offset-3 columns">
+            <input type="submit" value="Εγγραφή" name="submitted" class="button ">
+        </div>
+    </div>
+    <p class="text-align-center">
+        <a href="{{path('fos_user_security_login')}}">Είσαι ήδη μέλος; Συνδέσου εδώ</a>
+    </p>
+    {{form_rest(form)}}
+</form>
+{% endblock content %}

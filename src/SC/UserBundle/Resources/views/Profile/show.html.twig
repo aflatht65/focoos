@@ -1,0 +1,42 @@
+{% extends 'SCSiteBundle::base.html.twig' %}
+
+{% block content %}
+<div class="row full-width">
+	{% include 'SCSiteBundle::sidemenu.html.twig' %}
+
+	<h3>{{user.name}} {{user.surname}}</h3>
+
+	<div class="large-10 columns main">
+		<div class="row collapse profile-row">
+			<div class="large-2 columns">
+				<img class="avatar large" src="{{asset(user.avatarUrl)}}" />
+			</div>
+			<div class="large-10 columns panel">
+				<ul>
+					{% if user.department != null %}
+					<li><strong>Τμήμα</strong>: {{user.department.name}}</li>
+					{% endif %}
+					{% if user.lessons|length > 0 %}
+					<li>
+						<strong>Μαθήματα</strong>:
+						<ul class="profile-lessons">
+							{% for lesson in user.lessons %}
+							<li>{{lesson.name}}</li>
+							{% endfor %}
+						</ul>
+					</li>
+					{% endif %}
+					{% if app.user.id != user.id %}
+					<li>
+						<a class="button small ten-margin-top no-margin-bottom" href="{{path('thread', {'user': user.id})}}">Στείλε μήνυμα</a>
+					</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+		{% for post in user.posts %}
+                    {% include 'SCSiteBundle::post.html.twig' with {post: post} %}
+		{% endfor %}
+	</div>
+</div>
+{% endblock content %}

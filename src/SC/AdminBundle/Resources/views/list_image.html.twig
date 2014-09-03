@@ -1,0 +1,10 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field%}
+    {% if field_description.options.size is not defined %}
+        {% set size = 40 %}
+    {% else %}
+        {% set size = field_description.options.size %}
+    {% endif %}
+    <img src="{{ asset(value) }}" alt="Image" style="height: {{size}}px; width: {{size}}px;" />
+{% endblock %}

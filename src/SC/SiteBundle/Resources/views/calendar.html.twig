@@ -1,0 +1,41 @@
+{% extends 'SCSiteBundle::base.html.twig' %}
+
+{% block content %}
+<div class="row full-width">
+    {% include 'SCSiteBundle::sidemenu.html.twig' %}
+
+    <div class="large-10 columns main">
+        <h5>
+            <a href="{{path('calendar', {'startDate': (prevDate|date('d-m-Y'))})}}" class="calendar-previous">Προηγούμενη</a>
+            <a href="{{path('calendar', {'startDate': (nextDate|date('d-m-Y'))})}}" class="calendar-next">Επόμενη</a>
+        </h5>
+        <table>
+            <thead>
+                <tr>
+                    <th width="150">Δευτέρα {{startDate|date('d/m')}}</th>
+                    <th width="150">Τρίτη {{startDate|date_modify("+1 days")|date('d/m')}}</th>
+                    <th width="150">Τετάρτη {{startDate|date_modify("+2 days")|date('d/m')}}</th>
+                    <th width="150">Πέμπτη {{startDate|date_modify("+3 days")|date('d/m')}}</th>
+                    <th width="150">Παρασκευή {{startDate|date_modify("+4 days")|date('d/m')}}</th>
+                    <th width="150">Σάββατο {{startDate|date_modify("+5 days")|date('d/m')}}</th>
+                    <th width="150">Κυριακή {{endDate|date('d/m')}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for deadline in deadlines %}
+                {% set dow = deadline.deadlineDate|date('N') %}
+                <tr>
+                    {% for i in 1..7 %}
+                    {% if dow == i %}
+                    <td>{{deadline.message}}<BR /><small>{{deadline.lesson.name}}</small></td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

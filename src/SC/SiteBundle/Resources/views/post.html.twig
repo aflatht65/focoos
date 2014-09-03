@@ -1,0 +1,65 @@
+<div class="row collapse post">
+    <div class="large-1 columns photo">
+        <img class="avatar medium" src="{{post.student.avatarUrl != null ? asset(post.student.avatarUrl) : "http://placehold.it/60x60.png"}}" />
+    </div>
+    <div class="large-11 columns">
+        <div class="row header">
+            <div class="large-12 columns">
+                <a href="{{path('other_profile', {'user': post.student.id}) }}">{{post.student.name}} {{post.student.surname}}</a> <small>{{post.lesson.name}}</small>
+                <small class="time">{{post.createdAt|date('d-m-Y H:i')}}</small>
+            </div>
+        </div>
+        <div class="row content">
+            <div class="large-12 columns">
+                {{post.message}}
+            </div>
+        </div>
+        {% if (post.type == 'exercise') %}
+        <div class="row content">
+            <div class="large-12 columns">
+                <a href="{{asset(post.imagePath)}}"><i class="foundicon-down-arrow"></i> {{post.basename}}</a>
+            </div>
+        </div>
+        {% elseif(post.type == 'deadline') %}
+        <div class="row content">
+            <div class="large-12 columns">
+                <i class="foundicon-calendar"></i> {{post.deadlineDate|date('d-m-Y')}}
+            </div>
+        </div>
+        {% elseif(post.type == 'note') %}
+        <div class="row content">
+            <div class="large-12 columns">
+                <a href="{{asset(post.imagePath)}}"><i class="foundicon-down-arrow"></i> {{post.basename}}</a>
+            </div>
+        </div>
+        {% endif %}
+        <div class="row comments">
+            <div class="large-12 columns">
+                <div class="panel has-form">
+                    {% for comment in post.comments %}
+                    <div class="row collapse comment">
+                        <div class="large-12 columns">
+                            <img class="avatar small-medium" src="{{comment.student.avatarUrl != null ? asset(comment.student.avatarUrl) : "http://placehold.it/40x40.png"}}" />
+                                 <span class="comment-content">
+                                <a href="{{path('other_profile', {'user': comment.student.id}) }}">{{comment.student.name}} {{comment.student.surname}}</a>
+                                {{comment.message}}<BR />
+                                <small>{{comment.createdAt|date('d-m-Y H:i')}}</small>
+                            </span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <form action="{{path('submit_new_comment', {'post': post.id})}}" method="POST">
+                        <div class="row collapse">
+                            <div class="small-11 columns">
+                                <input type="text" name="comment[message]" class="no-margin-bottom" placeholder="Γράψε ένα σχόλιο..." />
+                            </div>
+                            <div class="small-1 columns">
+                                <input type="submit" name="submitted" class="no-margin-bottom button postfix" value="&#x2192;" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

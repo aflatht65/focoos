@@ -1,0 +1,47 @@
+{% extends 'SCSiteBundle::base.html.twig' %}
+
+{% block content %}
+<div class="row full-width">
+    {% include 'SCSiteBundle::sidemenu.html.twig' %}
+
+    <h3>Συζητήσεις με <a href="{{path('other_profile', {'user': user.id})}}">{{user.name}} {{user.surname}}</a></h3>
+
+    <div class="large-10 columns main posts conversations">
+        {% for message in messages %}
+        <div class="row collapse post">
+            <div class="large-1 columns photo">
+                <img class="avatar medium" src="{{message.sender.avatarUrl != null ? asset(message.sender.avatarUrl) : "http://placehold.it/60x60.png"}}" />
+            </div>
+            <div class="large-11 columns">
+                <div class="row header">
+                    <div class="large-12 columns">
+                        <a href="{{path('other_profile', {'user': message.sender.id})}}">{{message.sender.name}} {{message.sender.surname}}</a> <small class="time">{{message.createdAt|date('d-m-Y H:i')}}</small>
+                    </div>
+                </div>
+                <div class="row content">
+                    <div class="large-12 columns">
+                        {{message.message}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="row">
+            <div class="large-12 columns">
+                <div class="panel has-form">
+                    <form action="{{path('submit_new_private_message', {'user': user.id})}}" method="POST">
+                        <div class="row collapse">
+                            <div class="small-11 columns">
+                                <input type="text" name="private_message[message]" class="no-margin-bottom" placeholder="Γράψε ένα μήνυμα..." />
+                            </div>
+                            <div class="small-1 columns">
+                                <input type="submit" name="submitted" class="no-margin-bottom button postfix" value="&#x2192;" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
