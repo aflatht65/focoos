@@ -71,6 +71,18 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="SC\UserBundle\Entity\PrivateMessage", mappedBy="receiver")
      */
     protected $receivedMessages;
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $fbId;
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $fbEmail;
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $fbAccessToken;
 
     public function __construct() {
         parent::__construct();
@@ -168,6 +180,30 @@ class User extends BaseUser
 
     public function setReceivedMessages($receivedMessages) {
         $this->receivedMessages = $receivedMessages;
+    }
+
+    public function getFbId() {
+        return $this->fbId;
+    }
+
+    public function setFbId($fbId) {
+        $this->fbId = $fbId;
+    }
+
+    public function getFbEmail() {
+        return $this->fbEmail;
+    }
+
+    public function setFbEmail($fbEmail) {
+        $this->fbEmail = $fbEmail;
+    }
+
+    public function getFbAccessToken() {
+        return $this->fbAccessToken;
+    }
+
+    public function setFbAccessToken($fbAccessToken) {
+        $this->fbAccessToken = $fbAccessToken;
     }
 
     public function getExpiresAt() {
