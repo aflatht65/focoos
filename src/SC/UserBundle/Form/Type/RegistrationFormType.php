@@ -24,6 +24,9 @@ class RegistrationFormType extends BaseType
                 'invalid_message' => 'fos_user.password.mismatch',
                 'pattern' => '.{5,}',
             ))
+            ->add('fbId', 'hidden', array('required' => false))
+            ->add('fbEmail', 'hidden', array('required' => false))
+            ->add('fbAccessToken', 'hidden', array('required' => false))
         ;
     }
 

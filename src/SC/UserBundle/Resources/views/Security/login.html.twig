@@ -3,6 +3,13 @@
 {% block content %}
 <form action="{{ path("fos_user_security_check") }}" method="POST">
     <div class="row main">
+        <div class="large-6 large-offset-3 columns" style="text-align: center;">
+            <a href="{{path('facebook_login')}}">
+                <img alt="Facebook Login" src="{{asset('img/facebook_login.png')}}" />
+            </a>
+        </div>
+    </div>
+    <div class="row main">
         <div class="large-6 large-offset-3 columns">
 	{% if error != '' %}
         <div data-alert class="alert-box error radius">
